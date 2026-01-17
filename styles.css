@@ -1,0 +1,246 @@
+/* CSS Reset and Custom Properties (Design Tokens) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors - Soft Water Sky Palette */
+    --color-bg: linear-gradient(135deg, #a8edea 0%, #87ceeb 50%, #b0e0e6 100%);
+    --color-calculator-bg: rgba(255, 255, 255, 0.85);
+    --color-display-bg: linear-gradient(135deg, #e0f7fa 0%, #e1f5fe 100%);
+    --color-display-text: #37474f;
+    --color-btn-number: rgba(224, 247, 250, 0.9);
+    --color-btn-number-hover: rgba(178, 235, 242, 0.95);
+    --color-btn-number-active: rgba(128, 222, 234, 1);
+    --color-btn-function: rgba(178, 223, 219, 0.9);
+    --color-btn-function-hover: rgba(128, 203, 196, 0.95);
+    --color-btn-function-active: rgba(77, 182, 172, 1);
+    --color-btn-operator: #4fc3f7;
+    --color-btn-operator-hover: #29b6f6;
+    --color-btn-operator-active: #03a9f4;
+    --color-btn-equals: #26c6da;
+    --color-text-dark: #37474f;
+    --color-text-light: #ffffff;
+    --color-text-function: #455a64;
+
+    /* Soft Design Elements */
+    --radius-btn: 20px;
+    --radius-calculator: 30px;
+    --radius-display: 20px;
+    --shadow-soft: 0 4px 15px rgba(100, 181, 246, 0.2);
+    --shadow-calculator: 0 25px 60px rgba(100, 181, 246, 0.3), 0 10px 20px rgba(0, 0, 0, 0.1);
+    --shadow-btn: 0 4px 15px rgba(100, 181, 246, 0.15);
+    --shadow-btn-active: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    /* Transitions */
+    --transition-fast: 0.25s ease;
+
+    /* Sizing */
+    --btn-size: 65px;
+    --btn-gap: 12px;
+    --display-height: 120px;
+    --font-display: 3rem;
+    --font-btn: 1.5rem;
+}
+
+/* Body */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: var(--color-bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Calculator Container */
+.calculator {
+    background: var(--color-calculator-bg);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-calculator);
+    box-shadow: var(--shadow-calculator);
+    padding: 25px;
+    width: 100%;
+    max-width: 340px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Display Area */
+.display {
+    background: var(--color-display-bg);
+    color: var(--color-display-text);
+    font-size: var(--font-display);
+    font-weight: 300;
+    text-align: right;
+    padding: 25px 20px;
+    border-radius: var(--radius-display);
+    margin-bottom: 20px;
+    min-height: var(--display-height);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    overflow: hidden;
+    word-break: break-all;
+    box-shadow: var(--shadow-soft), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Button Grid - Standard 4 column layout */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--btn-gap);
+}
+
+/* Button Base Styles */
+.btn {
+    height: var(--btn-size);
+    width: var(--btn-size);
+    font-size: var(--font-btn);
+    border: none;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-weight: 500;
+    box-shadow: var(--shadow-btn);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(100, 181, 246, 0.25);
+}
+
+.btn:active {
+    transform: translateY(0) scale(0.97);
+}
+
+/* Number Buttons - Soft sky blue */
+.btn-number {
+    background: var(--color-btn-number);
+    color: var(--color-text-dark);
+}
+
+.btn-number:hover {
+    background: var(--color-btn-number-hover);
+}
+
+.btn-number:active {
+    background: var(--color-btn-number-active);
+    box-shadow: var(--shadow-btn-active);
+}
+
+/* Function Buttons (C, ±, %) - Soft teal */
+.btn-clear,
+.btn-function {
+    background: var(--color-btn-function);
+    color: var(--color-text-function);
+}
+
+.btn-clear:hover,
+.btn-function:hover {
+    background: var(--color-btn-function-hover);
+}
+
+.btn-clear:active,
+.btn-function:active {
+    background: var(--color-btn-function-active);
+    color: var(--color-text-light);
+    box-shadow: var(--shadow-btn-active);
+}
+
+/* Operator Buttons - Water blue accent */
+.btn-operator {
+    background: var(--color-btn-operator);
+    color: var(--color-text-light);
+}
+
+.btn-operator:hover {
+    background: var(--color-btn-operator-hover);
+}
+
+.btn-operator:active {
+    background: var(--color-btn-operator-active);
+    box-shadow: var(--shadow-btn-active);
+}
+
+/* Active operator state */
+.btn-operator.active {
+    background: var(--color-text-light);
+    color: var(--color-btn-operator);
+    box-shadow: 0 0 15px rgba(79, 195, 247, 0.5);
+}
+
+/* Equals Button - Cyan accent */
+.btn-equals {
+    background: var(--color-btn-equals);
+    color: var(--color-text-light);
+}
+
+.btn-equals:hover {
+    background: #00bcd4;
+}
+
+.btn-equals:active {
+    background: #00acc1;
+    box-shadow: var(--shadow-btn-active);
+}
+
+/* Zero Button - Spans Two Columns */
+.btn-zero {
+    grid-column: span 2;
+    width: 100%;
+    border-radius: 35px;
+    justify-content: flex-start;
+    padding-left: 28px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    :root {
+        --btn-size: 55px;
+        --font-display: 2.5rem;
+        --font-btn: 1.25rem;
+        --btn-gap: 10px;
+    }
+
+    .calculator {
+        padding: 20px;
+        border-radius: 25px;
+    }
+
+    .btn-zero {
+        padding-left: 22px;
+    }
+}
+
+/* Animation for button press */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.btn:active {
+    animation: buttonPress 0.15s ease-out;
+}
+
+/* Subtle floating animation for calculator */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.calculator {
+    animation: float 6s ease-in-out infinite;
+}
