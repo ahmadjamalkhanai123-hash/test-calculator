@@ -1,14 +1,14 @@
-# Use official Python image
-FROM python:3.10
+# Use nginx (lightweight web server)
+FROM nginx:alpine
 
-# Set working directory
-WORKDIR /app
+# Remove default nginx content
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy files
-COPY . .
+# Copy your website files
+COPY . /usr/share/nginx/html
 
-# Install dependencies (if any)
-RUN pip install --no-cache-dir -r requirements.txt || true
+# Expose port 80
+EXPOSE 80
 
-# Run app
-CMD ["python", "app.py"]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
